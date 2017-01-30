@@ -29,5 +29,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
     <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-api:7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet.jsp:jsp-api:2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.el:el-ri:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces.themes:casablanca:1.0.6" level="project" />
   </component>
 </module>

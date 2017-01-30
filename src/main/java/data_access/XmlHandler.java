@@ -1,4 +1,6 @@
+package data_access;
 
+import org.primefaces.push.annotation.Singleton;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,12 +22,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class XmlHandler {
+@Singleton
+public class XmlHandler implements DataLayer {
 
-    private static final String xmlName = "test.xml";
+    private static final String xmlName = "C:\\Users\\hl\\IdeaProjects\\notes\\test.xml";
     private int id;
     private Document doc;
-
     public XmlHandler() {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -42,16 +44,20 @@ public class XmlHandler {
         }
     }
 
-    // creates new xml with single "notes" node
-    public void createNewXml() {
-        Element rootElement = doc.createElement("notes");
-        doc.appendChild(rootElement);
-        rootElement.setAttribute("lastId", "0");
-
-        saveXmlChanges();
+    public static void main(String argv[]) {
+        XmlHandler xh = new XmlHandler();
+        /*xh.createNewXml();
+        xh.addNewNote("some node name", "content");
+        xh.addNewNote("Second note!", "YEAH");
+        xh.addNewNote("THIRD note", "oh my");
+        xh.addNewNote("4 note", "4oh my");
+        xh.removeNote(2);
+        xh.addNewNote("5 note", "5 my");
+        xh.changeNote(1, "meow", "MEW MEW");*/
+        //xh.addNewNote("some node name", "content");
+        //System.out.println(xh.getAllNotes());
     }
 
-    // adds new note, returns id
     public int addNewNote(String noteTitle, String noteContent) {
         id++;
         Node notes = doc.getFirstChild();
@@ -72,7 +78,6 @@ public class XmlHandler {
         return id;
     }
 
-    // remove note by id
     public void removeNote(int noteId) {
         Node rootNode = doc.getFirstChild();
         rootNode.removeChild(doc.getElementsByTagName("note").item(noteId - 1));
@@ -80,7 +85,6 @@ public class XmlHandler {
         saveXmlChanges();
     }
 
-    // changes note title and/or content
     public void changeNote(int noteId, String title, String content) {
         //Node note = doc.getElementsByTagName("note").item(noteId - 1); nope
         NodeList notesList = doc.getElementsByTagName("note");
@@ -101,17 +105,24 @@ public class XmlHandler {
         saveXmlChanges();
     }
 
-    // returns map with integer key and list with two elements: note's title and content
     public Map<Integer, List<String>> getAllNotes() {
         Map<Integer, List<String>> result = new HashMap<>();
         NodeList nodeList = doc.getElementsByTagName("note");
-        for (int i = 0; i < nodeList.getLength(); i++)
+        for (int i = 0; i < nodeList.getLength(); i++) {
             result.put(
                     Integer.parseInt(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue()),
                     Arrays.asList(nodeList.item(i).getChildNodes().item(0).getTextContent(),
                             nodeList.item(i).getChildNodes().item(1).getTextContent()));
-
+        }
         return result;
+    }
+
+    public void createNewXml() {
+        Element rootElement = doc.createElement("notes");
+        doc.appendChild(rootElement);
+        rootElement.setAttribute("lastId", "0");
+
+        saveXmlChanges();
     }
 
     private void saveXmlChanges() {
