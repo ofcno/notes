@@ -3,9 +3,6 @@ package data_access;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by hl on 29.01.2017.
- */
 public interface DataLayer {
     // adds new note, returns id
     int addNewNote(String noteTitle, String noteContent);
