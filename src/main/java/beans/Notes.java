@@ -2,7 +2,6 @@ package beans;
 
 import data_access.DBHandler;
 import data_access.DataLayer;
-import data_access.XmlHandler;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@ManagedBean(name = "notesBean")
+@ManagedBean(name = "NotesBean")
 @ViewScoped
 public class Notes {
 
