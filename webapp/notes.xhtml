@@ -14,10 +14,10 @@
 </h:head>
 <h:body>
 
-    <p:dataTable value="#{notesBean.notes.entrySet()}" var="entry"
+    <p:dataTable value="#{NotesBean.notes.entrySet()}" var="entry"
                  style="border: none; width: 60%; margin-left: 20%; margin-top: 10%"
                  selectionMode="single" rowKey="#{entry.key}">
-        <p:ajax event="rowSelect" listener="#{notesBean.openWidgetForNoteChanging}"/>
+        <p:ajax event="rowSelect" listener="#{NotesBean.openWidgetForNoteChanging}"/>
 
         <p:column>
             <h:outputText value="#{entry.value.get(0)}"/>
@@ -28,22 +28,22 @@
         </p:column>
     </p:dataTable>
     <h:form>
-        <p:commandButton icon="ui-icon-plusthick" actionListener="#{notesBean.openWidgetForAddingNote()}"
+        <p:commandButton icon="ui-icon-plusthick" actionListener="#{NotesBean.openWidgetForAddingNote()}"
                          style="width: 60%; margin-left: 20%;"/>
     </h:form>
     <p:dialog widgetVar="adder" modal="true" draggable="false" resizable="false">
         <h:form>
-            <p:inputText value="#{notesBean.noteTitle}"/>
-            <p:inputText value="#{notesBean.noteContent}"/>
-            <p:commandButton icon="ui-icon-plusthick" actionListener="#{notesBean.addNoteAndCloseWidget()}"/>
+            <p:inputText value="#{NotesBean.noteTitle}"/>
+            <p:inputText value="#{NotesBean.noteContent}"/>
+            <p:commandButton icon="ui-icon-plusthick" actionListener="#{NotesBean.addNoteAndCloseWidget()}"/>
         </h:form>
     </p:dialog>
     <p:dialog widgetVar="changer" modal="true" draggable="false" resizable="false">
         <h:form>
-            <p:inputText value="#{notesBean.noteTitle}"/>
-            <p:inputText value="#{notesBean.noteContent}"/>
-            <p:commandButton icon="ui-icon-check" actionListener="#{notesBean.setValueAndCloseWidget()}"/>
-            <p:commandButton icon="ui-icon-trash" actionListener="#{notesBean.removeNoteAndCloseWidget()}"/>
+            <p:inputText value="#{NotesBean.noteTitle}"/>
+            <p:inputText value="#{NotesBean.noteContent}"/>
+            <p:commandButton icon="ui-icon-check" actionListener="#{NotesBean.setValueAndCloseWidget()}"/>
+            <p:commandButton icon="ui-icon-trash" actionListener="#{NotesBean.removeNoteAndCloseWidget()}"/>
         </h:form>
     </p:dialog>
 </h:body>
