@@ -1,7 +1,7 @@
 package beans;
 
-import data_access.DBHandler;
-import data_access.DataLayer;
+import dao.Note;
+import dao.NoteService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
@@ -12,23 +12,21 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @ManagedBean(name = "NotesBean")
 @ViewScoped
 public class Notes {
 
-    private DataLayer storage;
-    private Map<Integer, List<String>> notes;
+    private NoteService noteService;
+    private List<Note> notes;
 
     private int noteId;
     private String noteTitle;
     private String noteContent;
 
     public Notes() {
-        //this.storage = new XmlHandler();
-        this.storage = new DBHandler();
-        notes = storage.getAllNotes();
+        noteService = new NoteService();
+        notes = noteService.findAll();
         this.noteTitle = "";
         this.noteContent = "";
     }
@@ -38,24 +36,24 @@ public class Notes {
     }
 
     public void addNoteAndCloseWidget() {
-        storage.addNewNote(noteTitle, noteContent);
+        noteService.create(new Note(noteTitle, noteContent));
         RequestContext.getCurrentInstance().execute("PF('adder').hide()");
         this.reloadPage();
     }
 
     public void openWidgetForNoteChanging(SelectEvent e) {
-        noteId = ((Map.Entry<Integer, List<String>>) e.getObject()).getKey();
+        noteId = ((Note) e.getObject()).getId();
         RequestContext.getCurrentInstance().execute("PF('changer').show()");
     }
 
     public void setValueAndCloseWidget() {
-        storage.changeNote(noteId, noteTitle, noteContent);
+        noteService.update(new Note(noteId, noteTitle, noteContent));
         RequestContext.getCurrentInstance().execute("PF('changer').hide()");
         this.reloadPage();
     }
 
     public void removeNoteAndCloseWidget() {
-        storage.removeNote(noteId);
+        noteService.delete(noteId);
         RequestContext.getCurrentInstance().execute("PF('changer').hide()");
         this.reloadPage();
     }
@@ -70,11 +68,11 @@ public class Notes {
     }
 
     // getters and setters
-    public Map<Integer, List<String>> getNotes() {
+    public List<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Map<Integer, List<String>> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
 

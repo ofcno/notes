@@ -14,17 +14,17 @@
 </h:head>
 <h:body>
 
-    <p:dataTable value="#{NotesBean.notes.entrySet()}" var="entry"
+    <p:dataTable value="#{NotesBean.notes}" var="entry"
                  style="border: none; width: 60%; margin-left: 20%; margin-top: 10%"
-                 selectionMode="single" rowKey="#{entry.key}">
+                 selectionMode="single" rowKey="#{entry.id}">
         <p:ajax event="rowSelect" listener="#{NotesBean.openWidgetForNoteChanging}"/>
 
         <p:column>
-            <h:outputText value="#{entry.value.get(0)}"/>
+            <h:outputText value="#{entry.title}"/>
         </p:column>
 
         <p:column>
-            <h:outputText value="#{entry.value.get(1)}"/>
+            <h:outputText value="#{entry.content}"/>
         </p:column>
     </p:dataTable>
     <h:form>
