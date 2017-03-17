@@ -9,6 +9,6 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">09071994</property>
-        <mapping class="dao.Note"/>
+        <mapping class="dao.NoteEntity"/>
     </session-factory>
 </hibernate-configuration>

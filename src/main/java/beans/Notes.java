@@ -1,6 +1,6 @@
 package beans;
 
-import dao.Note;
+import dao.NoteEntity;
 import dao.NoteService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -18,7 +18,7 @@ import java.util.List;
 public class Notes {
 
     private NoteService noteService;
-    private List<Note> notes;
+    private List<NoteEntity> notes;
 
     private int noteId;
     private String noteTitle;
@@ -36,18 +36,18 @@ public class Notes {
     }
 
     public void addNoteAndCloseWidget() {
-        noteService.create(new Note(noteTitle, noteContent));
+        noteService.create(new NoteEntity(noteTitle, noteContent));
         RequestContext.getCurrentInstance().execute("PF('adder').hide()");
         this.reloadPage();
     }
 
     public void openWidgetForNoteChanging(SelectEvent e) {
-        noteId = ((Note) e.getObject()).getId();
+        noteId = ((NoteEntity) e.getObject()).getId();
         RequestContext.getCurrentInstance().execute("PF('changer').show()");
     }
 
     public void setValueAndCloseWidget() {
-        noteService.update(new Note(noteId, noteTitle, noteContent));
+        noteService.update(new NoteEntity(noteId, noteTitle, noteContent));
         RequestContext.getCurrentInstance().execute("PF('changer').hide()");
         this.reloadPage();
     }
@@ -68,11 +68,11 @@ public class Notes {
     }
 
     // getters and setters
-    public List<Note> getNotes() {
+    public List<NoteEntity> getNotes() {
         return notes;
     }
 
-    public void setNotes(List<Note> notes) {
+    public void setNotes(List<NoteEntity> notes) {
         this.notes = notes;
     }
 

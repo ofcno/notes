@@ -4,22 +4,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "notes", schema = "testdb")
-public class Note {
+public class NoteEntity {
 
     private int id;
     private String title;
     private String content;
 
-    public Note() {
+    public NoteEntity() {
 
     }
 
-    public Note(String title, String content) {
+    public NoteEntity(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    public Note(int id, String title, String content) {
+    public NoteEntity(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -60,7 +60,7 @@ public class Note {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Note that = (Note) o;
+        NoteEntity that = (NoteEntity) o;
 
         if (id != that.id) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;

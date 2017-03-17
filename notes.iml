@@ -15,6 +15,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" />
           <unit-entry name="src:resources:hibernate.cfg.xml" value="fa3b0f7e-99d7-47e7-ba26-3bb60150edaf" />
         </datasource-map>
         <naming-strategy-map />
@@ -56,6 +57,5 @@
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.2" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.themes:casablanca:1.0.6" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
-    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.0.1.Final" level="project" />
   </component>
 </module>

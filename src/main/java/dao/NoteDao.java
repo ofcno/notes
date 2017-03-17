@@ -15,7 +15,7 @@ public class NoteDao implements NoteDaoInterface {
 
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(Note.class);
+        configuration.addAnnotatedClass(NoteEntity.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
@@ -54,28 +54,28 @@ public class NoteDao implements NoteDaoInterface {
     }
 
     @Override
-    public int create(Note entity) {
+    public int create(NoteEntity entity) {
         return (Integer) getCurrentSession().save(entity);
     }
 
     @Override
-    public void update(Note entity) {
+    public void update(NoteEntity entity) {
         getCurrentSession().update(entity);
     }
 
     @Override
-    public Note findById(Integer id) {
-        return getCurrentSession().get(Note.class, id);
+    public NoteEntity findById(Integer id) {
+        return getCurrentSession().get(NoteEntity.class, id);
     }
 
     @Override
-    public void delete(Note entity) {
+    public void delete(NoteEntity entity) {
         getCurrentSession().delete(entity);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Note> getAllNotes() {
-        return (List<Note>) getCurrentSession().createQuery("FROM Note").list();
+    public List<NoteEntity> getAllNotes() {
+        return (List<NoteEntity>) getCurrentSession().createQuery("FROM NoteEntity").list();
     }
 }

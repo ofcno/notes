@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface NoteDaoInterface {
 
-    public int create(Note note);
+    public int create(NoteEntity note);
 
-    public void delete(Note note);
+    public void delete(NoteEntity note);
 
-    public void update(Note note);
+    public void update(NoteEntity note);
 
-    public Note findById(Integer id);
+    public NoteEntity findById(Integer id);
 
-    public List<Note> getAllNotes();
+    public List<NoteEntity> getAllNotes();
 
 }

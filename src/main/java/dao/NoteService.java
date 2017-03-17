@@ -11,7 +11,7 @@ public class NoteService {
         NoteDao = new NoteDao();
     }
 
-    public int create(Note entity) {
+    public int create(NoteEntity entity) {
         NoteDao.openCurrentSessionWithTransaction();
         int id = NoteDao.create(entity);
         NoteDao.closeCurrentSessionWithTransaction();
@@ -19,15 +19,15 @@ public class NoteService {
         return id;
     }
 
-    public void update(Note entity) {
+    public void update(NoteEntity entity) {
         NoteDao.openCurrentSessionWithTransaction();
         NoteDao.update(entity);
         NoteDao.closeCurrentSessionWithTransaction();
     }
 
-    public Note findById(Integer id) {
+    public NoteEntity findById(Integer id) {
         NoteDao.openCurrentSession();
-        Note entity = NoteDao.findById(id);
+        NoteEntity entity = NoteDao.findById(id);
         NoteDao.closeCurrentSession();
 
         return entity;
@@ -35,14 +35,14 @@ public class NoteService {
 
     public void delete(Integer id) {
         NoteDao.openCurrentSessionWithTransaction();
-        Note entity = NoteDao.findById(id);
+        NoteEntity entity = NoteDao.findById(id);
         NoteDao.delete(entity);
         NoteDao.closeCurrentSessionWithTransaction();
     }
 
-    public List<Note> findAll() {
+    public List<NoteEntity> findAll() {
         NoteDao.openCurrentSession();
-        List<Note> notes = NoteDao.getAllNotes();
+        List<NoteEntity> notes = NoteDao.getAllNotes();
         NoteDao.closeCurrentSession();
         return notes;
     }
